@@ -48,8 +48,8 @@ No tests written yet.
 
 - Weatherstack free plan only supports HTTP so if there are issues with the weather page that is probably why
 - Aviationstack free plan has limited data, some flights wont return results
-- No error handling on the frontend if the user submits an empty form
-- The errors could be solved, but I just did not have the time / wasn't my main priority / I had other obligations lol
+- Frontend error handling is pretty basic right now and mostly uses alerts
+- Most other issues could be solved, but I just did not have the time / wasn't my main priority / I had other obligations lol
 
 - Future Development
 
