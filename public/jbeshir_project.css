@@ -1,0 +1,215 @@
+/* Jemal Beshir Travel Planning App CSS */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: lightsteelblue;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+#main-nav {
+    background-color: royalblue;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+#main-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#main-nav ul li {
+    display: inline-block;
+}
+
+#main-nav ul li:hover {
+    background-color: gray;
+}
+
+#main-nav ul li a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+}
+
+#bar {
+    background-color: grey;
+    color: white;
+    text-align: center;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+footer {
+    background-color: grey;
+    color: white;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 10px;
+    width: 100%;
+    margin-top: auto;
+}
+
+.button-19 {
+    appearance: button;
+    background-color: blue;
+    border: solid transparent;
+    border-radius: 16px;
+    border-width: 0 0 4px;
+    box-sizing: border-box;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: .8px;
+    line-height: 20px;
+    margin: 5px;
+    outline: none;
+    overflow: visible;
+    padding: 13px 16px;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.button-19:hover {
+    filter: brightness(1.1);
+}
+
+.button-19:active {
+  border-width: 4px 0 0;
+  background: none;
+}
+
+#audio-div {
+    background-color: lightsalmon;
+    border: 2px solid black;
+    padding: 20px;
+    margin: 20px auto;
+    width: 80%;
+}
+
+#audio-div h3 {
+    margin-bottom: 8px;
+}
+
+#audio-div ul {
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+.audio-buttons {
+    margin-top: 10px;
+}
+
+/* home page */
+.home-container {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+#intro-box {
+    background-color: lightpink;
+    border: 2px solid black;
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto 30px;
+}
+
+#history-box {
+    background-color: goldenrod;
+    border: 2px solid black;
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto 30px;
+    text-align: left;
+}
+
+#history-box h3 { margin-bottom: 10px; }
+
+#history-list { padding-left: 20px; }
+
+#history-list li { margin-bottom: 4px; font-size: 14px; }
+
+.nav-buttons { margin-top: 20px; }
+
+/* weather page */
+.weather-container { padding: 20px; }
+
+.lookup-form { margin-bottom: 20px; }
+
+.lookup-form input[type="text"] {
+    padding: 4px;
+    margin-right: 5px;
+}
+
+#weather-result {
+    background-color: goldenrod;
+    border: 2px solid black;
+    padding: 20px;
+    margin-top: 20px;
+    display: none;
+    max-width: 500px;
+}
+
+#weather-result p { margin-bottom: 6px; }
+
+#chart-container {
+    background-color: goldenrod;
+    border: 2px solid black;
+    padding: 20px;
+    margin-top: 20px;
+    display: none;
+    max-width: 700px;
+}
+
+#weatherChart { max-height: 300px; }
+
+/* currency page */
+.currency-container { padding: 20px; }
+
+.currency-container input[type="number"],
+.currency-container select {
+    padding: 4px;
+    margin-right: 5px;
+}
+
+#currency-result {
+    background-color: goldenrod;
+    border: 2px solid black;
+    padding: 20px;
+    margin-top: 20px;
+    display: none;
+    max-width: 400px;
+}
+
+#currency-result p { margin-bottom: 6px; }
+
+/* flights page, i love goldenrod if you cant tell by now*/
+.flights-container { padding: 20px; }
+
+.flights-container input[type="text"] {
+    padding: 4px;
+    margin-right: 5px;
+}
+
+#flight-result {
+    background-color: goldenrod;
+    border: 2px solid black;
+    padding: 20px;
+    margin-top: 20px;
+    display: none;
+    max-width: 500px;
+}
+
+#flight-result p { margin-bottom: 6px; }

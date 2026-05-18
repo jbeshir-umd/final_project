@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Jemal Beshir Travel Planning App -->
+
+<head>
+    <meta charset="UTF-8">
+    <title>jbeshir Project - Home</title>
+    <link rel="stylesheet" href="jbeshir_project.css">
+</head>
+
+<body>
+
+    <header id="bar">Travel Planning App</header>
+
+    <nav id="main-nav">
+        <ul>
+            
+            <li><a href="jbeshir_project-home.html">Home</a></li>
+            <li><a href="jbeshir_project-weather.html">Weather</a></li>
+            <li><a href="jbeshir_project-currency.html">Currency</a></li>
+            <li><a href="jbeshir_project-flights.html">Flights</a></li>
+            <li><a href="jbeshir_project-about.html">About</a></li>
+
+        </ul>
+    </nav>
+
+    <div class="home-container">
+
+        <div id="intro-box">
+            <h2>Welcome to the Travel Planning App! Made my yours truly!</h2>
+            <p>Use this app to check the weather at your destination, convert currencies, and check flight status all in one place.</p>
+        </div>
+
+        <div id="history-box">
+            <h3>Recent Searches</h3>
+            <ul id="history-list">
+                <li>Loading...Have some patience.</li>
+            </ul>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="jbeshir_project-weather.html" class="button-19">Weather</a>
+            <a href="jbeshir_project-currency.html" class="button-19">Currency</a>
+            <a href="jbeshir_project-flights.html" class="button-19">Flights</a>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Jemal Beshir</p>
+    </footer>
+
+    <script>
+
+        function loadHistory() {
+
+            fetch('/api/history')
+                .then(function(res) {
+                    return res.json();
+                })
+                .then(function(json) {
+                    console.log(json);
+
+                    var list = document.getElementById('history-list');
+
+                    if (!json.success || json.data.length === 0) {
+                        list.innerHTML = '<li>No searches yet.</li>';
+                        return;
+                    }
+
+                    list.innerHTML = '';
+
+                    json.data.forEach(function(item) {
+                        var li = document.createElement('li');
+                        li.innerHTML = item.search_type + ': ' + item.search_query;
+                        list.appendChild(li);
+                    });
+
+                });
+        }
+
+        window.onload = function() {
+            loadHistory();
+        }
+
+    </script>
+
+</body>
+</html>

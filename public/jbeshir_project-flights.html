@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Jemal Beshir Travel Planning App -->
+
+<head>
+    <meta charset="UTF-8">
+    <title>jbeshir Project - Flights</title>
+    <link rel="stylesheet" href="jbeshir_project.css">
+</head>
+
+
+<body>
+
+    <header id="bar">Flight Status!</header>
+
+    <nav id="main-nav">
+        <ul>
+            <li><a href="jbeshir_project-home.html">Home</a></li>
+            <li><a href="jbeshir_project-weather.html">Weather</a></li>
+            <li><a href="jbeshir_project-currency.html">Currency</a></li>
+            <li><a href="jbeshir_project-flights.html">Flights</a></li>
+            <li><a href="jbeshir_project-about.html">About</a></li>
+
+        </ul>
+    </nav>
+
+    <div class="flights-container">
+
+        <h1>Check Flight Status!</h1>
+
+        <div class="lookup-form">
+            <input type="text" id="flightInput" placeholder="e.g. AA100">
+            <button class="button-19" onclick="getFlight()">Look Up</button>
+        </div>
+
+        <div id="flight-result">
+            <h3 id="airline-name"></h3>
+            <p>Flight: <strong id="flight-num"></strong></p>
+            <p>Status: <strong id="flight-status"></strong></p>
+            <p>From: <strong id="dep-airport"></strong></p>
+            <p>Departure Time: <strong id="dep-time"></strong></p>
+            <p>To: <strong id="arr-airport"></strong></p>
+            <p>Arrival Time: <strong id="arr-time"></strong></p>
+            <p>Departure Delay: <strong id="dep-delay"></strong></p>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Jemal Beshir</p>
+    </footer>
+
+    <script>
+
+        function formatTime(dt) {
+            if (!dt) return 'N/A';
+            var d = new Date(dt);
+            return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        }
+
+        function getFlight() {
+
+            var flight = document.getElementById('flightInput').value.trim().toUpperCase();
+
+            if (!flight) {
+                alert('Please enter a flight number.');
+                return;
+            }
+
+            console.log('Looking up flight: ' + flight);
+
+            fetch('/api/history', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ search_type: 'flight', search_query: flight })
+            }
+        );
+
+            fetch('/api/flights?flight=' + encodeURIComponent(flight))
+                .then(function(res) {
+                    return res.json();
+                })
+                .then(function(json) {
+                    console.log(json);
+
+                    if (!json.success) {
+                        alert('Error: ' + json.error);
+                        return;
+                    }
+
+                    if (!json.data.data || json.data.data.length === 0) {
+                        alert('NO FLIGHT FOUND FOR ' + flight);
+                        return;
+                    }
+
+                    var f = json.data.data[0];
+
+                    document.getElementById('airline-name').innerHTML = f.airline ? f.airline.name : 'UNKOWN AIRLINE';
+                    document.getElementById('flight-num').innerHTML = f.flight ? f.flight.iata : flight;
+                    document.getElementById('flight-status').innerHTML = f.flight_status || 'UNKNOWN';
+                    document.getElementById('dep-airport').innerHTML = f.departure ? f.departure.airport : 'N/A';
+                    document.getElementById('dep-time').innerHTML = formatTime(f.departure ? f.departure.scheduled : null);
+                    document.getElementById('arr-airport').innerHTML = f.arrival ? f.arrival.airport : 'N/A';
+                    document.getElementById('arr-time').innerHTML = formatTime(f.arrival ? f.arrival.scheduled : null);
+                    document.getElementById('dep-delay').innerHTML = f.departure && f.departure.delay ? f.departure.delay + ' min' : 'None';
+
+                    document.getElementById('flight-result').style.display = 'BLOCK';
+
+                });
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                getFlight();
+            }
+        });
+
+    </script>
+
+</body>
+</html>
