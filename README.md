@@ -14,7 +14,7 @@ Desktop browsers (Chrome, Firefox, Edge). Works on mobile Chrome and Safari too 
 
 - Developer Manual
 
-You need Node.js installed. Then run:
+You need Node.js installed (the nodejs.org site has the different installers). Then run in your terminal:
 
 ```
 npm install
